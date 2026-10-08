@@ -1,0 +1,104 @@
+# The Polish Haus: Asset Library
+
+Every photo, logo, font and brand colour for the site is listed here. Check this file
+before asking for an upload: if an asset is listed, it is already in the project.
+
+## Folders
+
+| Folder | What lives there | Served on the site? |
+|---|---|---|
+| `public/images/photos/` | Web-sized JPGs (1400px wide, ~90–260 KB). Reference as `/images/photos/<name>.jpg`. | Yes |
+| `public/images/` | Logos (transparent PNG) | Yes |
+| `public/fonts/` | Brand fonts | Yes |
+| `assets/originals/photos/` | Full-resolution masters of the photos. Re-export from these, never from the web JPGs. | No |
+| `assets/inbox/` | Drop new photos here, then run `node scripts/add-photos.mjs` | No |
+
+### Adding new photos
+1. Put the files in `assets/inbox/` (or attach them in chat and ask for them to be added).
+2. Run `node scripts/add-photos.mjs` (optionally `photo1.png=new-name` to rename).
+3. Add a row to the table below.
+
+## Photos
+
+Shapes: **almond** (tapered, rounded tip), **coffin/square** (long, flat tip), **short square** (toes).
+"Used on" refers to the home page (`app/page.tsx`), the hero slider (`app/components.tsx`) and the inner pages (`app/services`, `app/the-haus`, `app/book`). Services photos are set in `app/site.ts`.
+
+### Nails: close-ups
+
+| File | Service / style | What it shows | Size | Used on |
+|---|---|---|---|---|
+| `classic-french.jpg` | Manicure · French | Almond, sheer pink with crisp white French tips, gold rings, rose-gold vase | 1374×1145 | Edit: French · Services: Manicure |
+| `gold-french.jpg` | French · Gold-Line French | Almond, soft white French tips edged with a fine gold line | 1400×933 | Hero slide 8 · Intro circle · Edit: Gold-Line French · Book page |
+| `aura.jpg` | Aura · Nail art | Almond, sheer nude with berry aura blush centre and gold outline | 1374×1145 | Edit: Aura |
+| `chrome.jpg` | Chrome · Glazed | Almond, rose-gold shimmer chrome (also works for "glazed") | 1374×1145 | Edit: Chrome |
+| `cateye-magenta.jpg` | Cat Eye · Signature finishes | Almond, deep plum-magenta cat eye with light band, dark moody background | 1400×933 | Edit: Cat Eye · Dark banner · Services: Signature Finishes |
+| `floral-3d.jpg` | Nail art · 3D art | Almond, nude with 3D pink flowers, pink marble tips, gold swirls and studs | 1400×933 | Hero slide 6 · Edit: 3D Art · Services: Nail Art |
+| `geo-tips.jpg` | Nail art · Extensions | Long square, nude with brown/white geometric (kente-style) tips, gold lines, warm sunlight | 1374×1145 | Hero slide 2 · Edit: Geometric |
+| `geo-coffin.jpg` | Extensions · Nail art | Long coffin extensions, geometric brown/white/gold designs and gold studs, both hands | 1400×933 | Hero slide 4 · Services: Extensions |
+| `pedicure.jpg` | **Pedicure** | Toes, short square French pedicure on cream towel, pumice stone | 1374×1145 | Edit: Pedicure · Services: Pedicure |
+
+### Portraits / lifestyle
+
+| File | What it shows | Size | Used on |
+|---|---|---|---|
+| `p-burgundy.jpg` | Glam close-up, burgundy almond nails with gold accents, gold earrings, cream blazer | 1400×933 | Booking band (every page) |
+| `p-robe.jpg` | Leaning forward on cream sofa, feather-trim satin robe, both hands framing face, long pink square French nails, gold jewellery | 1374×1145 | The Haus: header |
+| `p-satin.jpg` | Lying on cream bouclé sofa, champagne satin robe, hand on cheek, long pink square nails, gold jewellery | 1374×1145 | Hero slide 5 |
+| `p-lounge.jpg` | Lying on cream bedding, satin robe with feather trim, long white French nails, hand on cheek | 1374×1145 | Haus Experience |
+| `p-chin.jpg` | Same model, white top, hand under chin on cream sofa, gold interior | 1374×1145 | The Haus: portraits |
+| `p-face.jpg` | Same model, hand over one eye, feather robe, long pink square nails | 1374×1145 | Hero slide 3 |
+| `p-hair.jpg` | Same model, brown satin top, hand in hair | 1374×1145 | The Haus: portraits |
+| `p-shoulder.jpg` | Same model, looking over shoulder, brown satin slip, long pink square nails | 1374×1145 | Hero slide 7 · The Haus: portraits |
+| `pink.jpg` | Campaign: model's face framed by many hands with long pink/purple jewelled nails, dark backdrop | 1536×1024 | Hero slide 1 |
+
+Hero order (set by client): pink (start), geo-tips, p-face, geo-coffin, p-satin, floral-3d, p-shoulder, gold-french. Nails and portraits alternate.
+
+### Duplicates (older exports of the same shots, no masters)
+These four files are the same images as newer files above. None are referenced, so they can be deleted.
+
+| Older file | Same image as | Still referenced? |
+|---|---|---|
+| `cateye.jpg` | `cateye-magenta.jpg` | No (Velvet card was replaced by Pedicure) |
+| `floral.jpg` | `floral-3d.jpg` | No |
+| `french.jpg` | `gold-french.jpg` | No |
+| `geometric.jpg` | `geo-tips.jpg` | No |
+
+### Missing photos (wanted)
+- Velvet finish
+- Ombré
+- Glazed (chrome.jpg is standing in)
+- Gel / BIAB / builder gel natural-length manicure
+- Pedicure variety (gel colour, luxury spa)
+- Studio interior / team
+
+## Logos (`public/images/`, transparent PNG)
+
+| File | What it is | Size | Use on |
+|---|---|---|---|
+| `logo.png` | Full lockup: rose-gold "TPH" monogram with polish-brush drop, "THE POLISH HAUS", "PERFECT FINISH", lotus | 1091×910 | Footer, large brand moments, light backgrounds |
+| `logo-wordmark.png` | Horizontal wordmark "THE POLISH HAUS" in rose-gold | 1091×188 | Navigation, light backgrounds |
+| `logo-wordmark-white.png` | Same wordmark in white | 1091×188 | Dark/wine backgrounds and over photos |
+
+No monogram-only file or favicon-sized version exists yet (`app/favicon.ico` is the Next.js default).
+
+## Fonts (`public/fonts/`, loaded in `app/layout.tsx`)
+
+| File | Role | CSS variable |
+|---|---|---|
+| `OrangeAvenue.otf` | Display / headlines (tall capitals, so allow headroom when clipping) | `--font-orange` → `.display` |
+| `OrangeAvenueOutline.otf` | Outline display, large footer wordmark | `--font-outline` → `.outline-text` |
+| Montserrat (Google, 300–600) | Body and labels | `--font-montserrat` |
+
+## Brand colours (`app/globals.css`)
+
+| Token | Hex | Tailwind class |
+|---|---|---|
+| Background | `#fdf9f8` | `bg-bg` |
+| Blush | `#f8ebea` | `bg-blush` |
+| Grey | `#f4f1f0` | `bg-grey` |
+| Ink (text) | `#1d1316` | `text-ink` |
+| Muted text | `#6f6165` | `text-muted` |
+| Pink | `#c4687b` | `text-pink` |
+| Deep pink (buttons) | `#a8445f` | `bg-pinkdeep` |
+| Wine (dark sections) | `#3a0f20` | `bg-wine` |
+| Metal gradient | `#e8b3b6 → #c4687b → #e9b8b0` | `.metal` |
