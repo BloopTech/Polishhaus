@@ -141,6 +141,15 @@ body {
 .btn-outline:hover {
   border-color: var(--ink);
 }
+/* Outline button for dark backgrounds (the wine hero). */
+.btn-ghost {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+.btn-ghost:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
 .btn-light {
   background: #fff;
   color: var(--ink);
@@ -294,9 +303,11 @@ main {
     clip-path: inset(-0.6em -100vw -0.6em -100vw);
   }
 }
+/* The gradient only paints inside the box, and the display caps rise above the line box,
+   so pad it out and cancel the padding with negative margins. */
 .metal {
-  padding-right: 0.15em;
-  margin-right: -0.15em;
+  padding: 0.2em 0.15em 0.1em 0;
+  margin: -0.2em -0.15em -0.1em 0;
 }
 
 /* Detail steps: scroll-driven orbit and photo reveals (--p is 0..1 scroll progress, set in DetailSteps) */

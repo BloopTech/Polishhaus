@@ -7,10 +7,11 @@ export const metadata: Metadata = {
   description: "The Polish Haus is a modern nail beauty studio dedicated to craftsmanship, expressive nail art and a perfect finish.",
 };
 
-const portraits = [
-  ["p-chin", "Client resting her chin on her hand, long pink nails", "50% 35%"],
-  ["p-hair", "Client with her hand in her hair, long French nails", "50% 30%"],
-  ["p-shoulder", "Client looking over her shoulder, long pink nails", "45% 30%"],
+// Nail close-ups not already shown large on this page (the detail steps use gold-french, geo-coffin, pedicure).
+const nails = [
+  ["classic-french", "Almond nails with crisp white French tips", "50% 50%"],
+  ["floral-3d", "Nude almond nails with 3D pink flowers and gold swirls", "50% 50%"],
+  ["chrome", "Almond nails in rose-gold shimmer chrome", "50% 50%"],
 ] as const;
 
 // Grounded in the FAQ: consultation, inspiration photos, extension advice, aftercare.
@@ -50,7 +51,7 @@ export default function TheHausPage() {
           </div>
         </Reveal>
         <div className="mt-16 grid grid-cols-3 gap-3 md:mt-24 md:gap-5">
-          {portraits.map(([file, alt, pos], i) => (
+          {nails.map(([file, alt, pos], i) => (
             <Photo
               key={file}
               src={`${P}${file}.jpg`}

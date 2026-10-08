@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Arrow, BookingBand, DetailSteps, Faq, HeroSlider, Photo, Reveal, Slide, StyleGrid } from "./components";
+import { Arrow, BookingBand, DetailSteps, Faq, HeroHeadline, HeroSlider, Photo, Reveal, Slide, StyleGrid } from "./components";
 import { detailSteps, faqs, orbit, P, points } from "./site";
 
 const marquee = ["Gel-X", "Builder Gel", "BIAB", "Chrome", "Cat Eye", "Custom Nail Art", "Aura", "French", "Velvet", "3D Art"];
@@ -16,28 +16,19 @@ export default function Home() {
   return (
     <main id="top">
       {/* HERO */}
-      <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-bg md:items-center">
+      <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-wine text-white md:items-center">
         <div className="absolute inset-0">
           <HeroSlider />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/75 via-45% to-transparent md:bg-gradient-to-r md:from-bg md:via-bg/80 md:via-35% md:to-transparent md:to-65%" />
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-bg/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-wine/95 via-wine/75 via-45% to-transparent md:bg-gradient-to-r md:from-wine md:via-wine/80 md:via-35% md:to-transparent md:to-65%" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-wine/40 to-transparent" />
         {/* Same gutters as the nav bar so the headline lines up with the logo. */}
         <div className="relative w-full px-3 pb-28 pt-40 md:px-6 md:pb-0 md:pt-32">
           <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-            <h1 className="display text-[3.2rem] uppercase sm:text-7xl lg:text-[6.4rem]">
-              <span className="line">
-                <span style={{ ["--d" as string]: "0.2s" }}>Perfect</span>
-              </span>
-              <span className="line">
-                <span className="metal" style={{ ["--d" as string]: "0.45s" }}>
-                  Finish
-                </span>
-              </span>
-            </h1>
+            <HeroHeadline />
             <Reveal delay={0.5}>
               <p className="mt-4 text-xl font-light md:text-2xl">Where beauty meets precision.</p>
-              <p className="mt-2 max-w-md text-sm leading-7 text-muted">
+              <p className="mt-2 max-w-md text-sm leading-7 text-white/70">
                 A luxury nail experience created for women who appreciate beautiful details.
               </p>
             </Reveal>
@@ -45,7 +36,7 @@ export default function Home() {
               <Link href="/book" className="btn btn-pink label">
                 Book an Appointment <Arrow />
               </Link>
-              <Link href="/services" className="btn btn-outline label">
+              <Link href="/services" className="btn btn-ghost label">
                 Explore Services
               </Link>
             </Reveal>

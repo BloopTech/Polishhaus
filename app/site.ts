@@ -22,8 +22,8 @@ export const whatsappLink = (text?: string) =>
   `https://wa.me/${studio.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 export const instagramLink = `https://instagram.com/${studio.instagram}`;
 
+// No "Home" entry: the logo links home.
 export const routes = [
-  ["Home", "/"],
   ["Services", "/services"],
   ["The Haus", "/the-haus"],
   ["Contact", "/contact"],

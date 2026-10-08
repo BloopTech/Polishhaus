@@ -208,13 +208,13 @@ export function Nav() {
         className={`mx-auto flex max-w-[1400px] items-center justify-between rounded-full border px-5 backdrop-blur-xl transition-all duration-700 md:px-8 ${
           scrolled
             ? "h-14 border-pink/25 bg-white shadow-[0_14px_40px_-14px_rgba(58,15,32,0.35)]"
-            : "h-[4.5rem] border-white/50 bg-white/20 shadow-[0_12px_36px_-12px_rgba(58,15,32,0.28),inset_0_1px_0_rgba(255,255,255,0.6)]"
+            : "h-[4.5rem] border-white bg-white/95 shadow-[0_16px_44px_-12px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.6)]"
         }`}
       >
         <Logo className={`transition-all duration-700 ${scrolled ? "h-6" : "h-8"}`} />
 
         <div className="flex items-center justify-end gap-9">
-          <nav className="label hidden items-center gap-8 xl:flex">
+          <nav className="label hidden items-center gap-9 !text-[0.78rem] xl:flex">
             {routes.map(([t, h]) => (
               <Link
                 key={h}
@@ -285,11 +285,11 @@ export function Footer() {
       <div className="mx-auto max-w-[1336px]">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo src="/images/logo.png" className="h-24 md:h-28" />
+            <Logo src="/images/logo.png" className="h-32 md:h-40" />
           </div>
           <nav className="label flex flex-col gap-3 md:col-span-3">
             <p className="mb-1 text-pinkdeep">Explore</p>
-            {[...routes.slice(1), ["Book Appointment", "/book"] as const].map(([t, h]) => (
+            {[...routes, ["Book Appointment", "/book"] as const].map(([t, h]) => (
               <Link key={h} href={h} className="ul w-fit">
                 {t}
               </Link>
@@ -442,6 +442,55 @@ const slides = [
 
 const INTERVAL = 7000;
 
+const headlines = [
+  ["Perfect", "Finish"],
+  ["Flawless", "Detail"],
+  ["Signature", "Sets"],
+  ["Luxury", "Nail Art"],
+  ["Bold", "Glamour"],
+];
+
+/* Rotates on the slider's interval. The old pair fades up and out, then the h1 remounts
+   (keyed) so the .line rise-in and unmask animations replay for the new pair. */
+export function HeroHeadline() {
+  const [i, setI] = useState(0);
+  const [out, setOut] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setOut(true), INTERVAL - 700);
+    const u = setTimeout(() => {
+      setI((n) => (n + 1) % headlines.length);
+      setOut(false);
+    }, INTERVAL);
+    return () => {
+      clearTimeout(t);
+      clearTimeout(u);
+    };
+  }, [i]);
+
+  const [a, b] = headlines[i];
+  const first = i === 0 && !out;
+
+  return (
+    <h1
+      key={i}
+      aria-label={`${a} ${b}`}
+      className={`display whitespace-nowrap text-[3.2rem] uppercase transition-all duration-700 sm:text-7xl lg:text-[6.4rem] ${
+        out ? "-translate-y-3 opacity-0" : ""
+      }`}
+    >
+      <span className="line" aria-hidden>
+        <span style={{ ["--d" as string]: first ? "0.2s" : "0s" }}>{a}</span>
+      </span>
+      <span className="line" aria-hidden>
+        <span className="metal" style={{ ["--d" as string]: first ? "0.45s" : "0.18s" }}>
+          {b}
+        </span>
+      </span>
+    </h1>
+  );
+}
+
 export function HeroSlider() {
   const [i, setI] = useState(0);
 
@@ -467,7 +516,7 @@ export function HeroSlider() {
         </div>
       ))}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-40 bg-gradient-to-t from-black/40 to-transparent md:block" />
-      <div className="absolute right-6 top-24 z-10 flex items-center gap-4 text-ink md:inset-x-8 md:bottom-7 md:top-auto md:justify-end md:text-white [&_i]:bg-ink md:[&_i]:bg-white">
+      <div className="absolute right-6 top-24 z-10 flex items-center gap-4 text-white md:inset-x-8 md:bottom-7 md:top-auto md:justify-end [&_i]:bg-white">
         <div className="label relative hidden h-4 w-44 text-right md:block">
           {slides.map((s, n) => (
             <span key={s.caption} className={`caption absolute inset-0 ${n === i ? "on" : ""}`}>
