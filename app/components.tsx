@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { instagramLink, P, routes, studio, styles, whatsappLink } from "./site";
+import { emailLink, tiktokLink, P, routes, studio, styles, telLink } from "./site";
 
 /* Images live in /public/images. Missing files fall back to a tonal block. */
 export function Photo({
@@ -297,15 +297,21 @@ export function Footer() {
           </nav>
           <div className="grid content-start grid-cols-2 gap-x-6 gap-y-5 text-sm leading-6 text-muted md:col-span-5 md:gap-x-8">
             <div>
-              <p className="label mb-1 text-pinkdeep">Instagram</p>
-              <a href={instagramLink} className="ul">
-                @{studio.instagram}
+              <p className="label mb-1 text-pinkdeep">TikTok</p>
+              <a href={tiktokLink} className="ul">
+                @{studio.tiktok}
               </a>
             </div>
             <div>
-              <p className="label mb-1 text-pinkdeep">WhatsApp</p>
-              <a href={whatsappLink()} className="ul">
+              <p className="label mb-1 text-pinkdeep">Call / WhatsApp</p>
+              <a href={telLink} className="ul">
                 {studio.whatsappDisplay}
+              </a>
+            </div>
+            <div className="col-span-2">
+              <p className="label mb-1 text-pinkdeep">Email</p>
+              <a href={emailLink} className="ul break-all">
+                {studio.email}
               </a>
             </div>
             <div>

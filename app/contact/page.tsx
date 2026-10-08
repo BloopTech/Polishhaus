@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, Faq, PageHeader, Reveal, Slide } from "../components";
-import { faqs, instagramLink, studio, whatsappLink } from "../site";
+import { emailLink, faqs, tiktokLink, studio, whatsappLink } from "../site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Message The Polish Haus on WhatsApp or Instagram, find the studio and see opening hours.",
+  description: "Message The Polish Haus on WhatsApp or TikTok, find the studio and see opening hours.",
 };
 
 export default function ContactPage() {
   const cards = [
     { label: "WhatsApp", value: studio.whatsappDisplay, note: "The quickest way to reach us", href: whatsappLink(), cta: "Message us" },
-    { label: "Instagram", value: `@${studio.instagram}`, note: "Latest sets and availability", href: instagramLink, cta: "Follow" },
+    { label: "TikTok", value: `@${studio.tiktok}`, note: "Latest sets and availability", href: tiktokLink, cta: "Follow" },
+    { label: "Email", value: studio.email, note: "For enquiries, collaborations and gift requests", href: emailLink, cta: "Send an email", wide: true },
   ];
 
   return (
@@ -24,7 +25,7 @@ export default function ContactPage() {
 
       <section className="mx-auto grid max-w-[1448px] gap-4 px-8 md:grid-cols-2 md:gap-5 md:px-14">
         {cards.map((c, i) => (
-          <Reveal key={c.label} delay={i * 0.1}>
+          <Reveal key={c.label} delay={i * 0.1} className={c.wide ? "md:col-span-2" : ""}>
             <a
               href={c.href}
               target="_blank"
@@ -33,7 +34,17 @@ export default function ContactPage() {
             >
               <div>
                 <p className="label text-white/70">{c.label}</p>
-                <p className="display mt-4 break-words text-3xl md:text-5xl">{c.value}</p>
+                {/* The email is long: smaller on phones, and if it must wrap it breaks before the @. */}
+                <p className={`display mt-4 [overflow-wrap:anywhere] md:text-5xl ${c.wide ? "text-[1.45rem] sm:text-3xl" : "text-3xl"}`}>
+                  {c.wide ? (
+                    <>
+                      {c.value.split("@")[0]}
+                      <wbr />@{c.value.split("@")[1]}
+                    </>
+                  ) : (
+                    c.value
+                  )}
+                </p>
                 <p className="mt-3 text-sm text-white/75">{c.note}</p>
               </div>
               <span className="label flex items-center gap-3">

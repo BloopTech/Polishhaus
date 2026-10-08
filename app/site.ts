@@ -3,11 +3,12 @@
 export const P = "/images/photos/";
 
 export const studio = {
-  instagram: "thepolishhaus",
+  tiktok: "thepolish_haus",
   // International format, digits only (e.g. "447700900123"). Booking requests open WhatsApp to this number.
-  whatsapp: "",
-  whatsappDisplay: "+00 000 000 0000",
-  address: "Street Address, City, Postcode",
+  whatsapp: "233593660805",
+  whatsappDisplay: "059 366 0805",
+  email: "eshunshine29@gmail.com",
+  address: "Okpoi Gonno Taxi Rank, Spintex, Accra",
   hours: [
     ["Tuesday – Saturday", "10:00 – 18:00"],
     ["Sunday & Monday", "Closed"],
@@ -20,7 +21,9 @@ export const studio = {
 
 export const whatsappLink = (text?: string) =>
   `https://wa.me/${studio.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
-export const instagramLink = `https://instagram.com/${studio.instagram}`;
+export const tiktokLink = `https://www.tiktok.com/@${studio.tiktok}`;
+export const telLink = `tel:+${studio.whatsapp}`;
+export const emailLink = `mailto:${studio.email}`;
 
 // No "Home" entry: the logo links home.
 export const routes = [
