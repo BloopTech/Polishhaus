@@ -29,6 +29,9 @@ export const slotsFor = (date: string) =>
 export const whatsappLink = (text?: string) =>
   `https://wa.me/${studio.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 export const tiktokLink = `https://www.tiktok.com/@${studio.tiktok}`;
+// Booking requests are also emailed to the studio through FormSubmit (free, no account).
+// The first request sends an activation email to this address; nothing arrives until she clicks "Activate".
+export const bookingEmailEndpoint = `https://formsubmit.co/ajax/${studio.email}`;
 export const telLink = `tel:+${studio.whatsapp}`;
 export const emailLink = `mailto:${studio.email}`;
 

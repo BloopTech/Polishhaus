@@ -2,7 +2,7 @@
 
 import { use, useState, type FormEvent, type ReactNode } from "react";
 import { Arrow } from "../components";
-import { services, slotsFor, studio, styles, whatsappLink } from "../site";
+import { bookingEmailEndpoint, services, slotsFor, studio, styles, whatsappLink } from "../site";
 
 const field =
   "w-full border-b border-ink/20 bg-transparent py-3 text-base outline-none transition-colors duration-500 placeholder:text-muted/60 focus:border-pinkdeep";
@@ -71,7 +71,25 @@ export function BookingForm({ query }: { query: Promise<Query> }) {
     ]
       .filter((l) => l !== null)
       .join("\n");
+    // Open WhatsApp first, inside the click, so pop-up blockers allow it.
     window.open(whatsappLink(message), "_blank", "noopener");
+    // Email copy, so the studio still gets the request if the customer never presses send in WhatsApp.
+    fetch(bookingEmailEndpoint, {
+      method: "POST",
+      keepalive: true,
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        _subject: `New booking request: ${form.name}, ${date}`,
+        _template: "table",
+        Service: form.service,
+        Style: form.style || "No preference",
+        "Preferred date": date,
+        "Preferred time": form.slot || "No preference",
+        Name: form.name,
+        Phone: form.phone,
+        Notes: form.notes || "None",
+      }),
+    }).catch(() => {});
     setSent(true);
   };
 
