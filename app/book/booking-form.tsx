@@ -2,7 +2,7 @@
 
 import { use, useState, type FormEvent, type ReactNode } from "react";
 import { Arrow } from "../components";
-import { services, studio, styles, whatsappLink } from "../site";
+import { services, slotsFor, studio, styles, whatsappLink } from "../site";
 
 const field =
   "w-full border-b border-ink/20 bg-transparent py-3 text-base outline-none transition-colors duration-500 placeholder:text-muted/60 focus:border-pinkdeep";
@@ -49,7 +49,7 @@ export function BookingForm({ query }: { query: Promise<Query> }) {
     e.preventDefault();
     const day = new Date(`${form.date}T12:00`).getDay();
     if (studio.closedDays.includes(day)) {
-      setError("We are closed on Sundays and Mondays. Please choose another date.");
+      setError(studio.closedMessage);
       return;
     }
     setError("");
@@ -117,14 +117,18 @@ export function BookingForm({ query }: { query: Promise<Query> }) {
             type="date"
             min={today()}
             value={form.date}
-            onChange={(e) => set("date")(e.target.value)}
+            onChange={(e) => {
+              const date = e.target.value;
+              // Drop a chosen time the new day does not offer (e.g. a morning slot on a Sunday).
+              setForm((f) => ({ ...f, date, slot: slotsFor(date).includes(f.slot) ? f.slot : "" }));
+            }}
             className={field}
           />
         </Field>
         <fieldset>
           <legend className="label text-pinkdeep">Preferred time</legend>
           <div className="mt-3 flex flex-wrap gap-2">
-            {studio.slots.map((t) => (
+            {slotsFor(form.date).map((t) => (
               <button
                 key={t}
                 type="button"

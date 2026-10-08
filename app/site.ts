@@ -11,13 +11,20 @@ export const studio = {
   address: "Okpoi Gonno Taxi Rank, Spintex, Accra",
   hours: [
     ["Tuesday – Saturday", "10:00 – 18:00"],
-    ["Sunday & Monday", "Closed"],
+    ["Sunday", "14:00 – 18:00"],
+    ["Monday", "Closed"],
   ],
   // Days the booking form refuses (0 = Sunday). Keep in sync with hours above.
-  closedDays: [0, 1],
+  closedDays: [1],
+  closedMessage: "We are closed on Mondays. Please choose another date.",
   // Preferred-time options shown on the booking form.
   slots: ["Morning (10–12)", "Midday (12–15)", "Afternoon (15–18)"],
+  // Days with shorter hours get their own options (0 = Sunday, opens 14:00).
+  daySlots: { 0: ["Early afternoon (14–16)", "Late afternoon (16–18)"] } as Record<number, string[]>,
 };
+
+export const slotsFor = (date: string) =>
+  (date && studio.daySlots[new Date(`${date}T12:00`).getDay()]) || studio.slots;
 
 export const whatsappLink = (text?: string) =>
   `https://wa.me/${studio.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
